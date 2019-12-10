@@ -20,8 +20,11 @@ class FuelCalculator:
         for mass in self.masses:
             self.fuel_requirements.append(self.fuel_required(mass))
 
+    def calculate_total_fuel_required(self):
+        total_fuel_required = sum(self.fuel_requirements)
+        print(total_fuel_required)
 
 test = FuelCalculator()
 test.import_data()
 test.calculate_fuel_requirements()
-print(test.fuel_requirements)
+test.calculate_total_fuel_required()
