@@ -6,6 +6,7 @@ class FuelCalculator(object):
         self.masses = []
         self.fuel_requirements = []
         self.total_fuel_required = 0
+        self.extra_fuel_required = 0
 
         self.import_data()
         self.calculate_fuel_requirements()
@@ -34,9 +35,17 @@ class FuelCalculator(object):
                 break
             else:
                 extra_fuel_quantities.append(extra_fuel)
+        return sum(extra_fuel_quantities)
+    
+    def calculate_total_extra_fuel(self):
+        for fuel_mass in self.fuel_requirements:
+            extra_fuel_required = self.calculate_extra_fuel(fuel_mass)
+            self.extra_fuel_required += extra_fuel_required
+        print(self.extra_fuel_required)
 
     def calculate_total_fuel_required(self):
         self.total_fuel_required = sum(self.fuel_requirements)
 
 test = FuelCalculator()
 test.calculate_extra_fuel(654)
+test.calculate_total_extra_fuel()
